@@ -1,3 +1,11 @@
 # SQL_SEVER_COURSE_GALI_TO_GLORY
 AUTHOR :SHIVAM TOMAR
 
+1.WE USE FOR SINGLE LINE COMMENT SEE BELOW SYNTAX :
+--------
+
+2.WE USE FOR MULTIPLE LINE COMMNET SEE BELOW SYNTAX:
+/*********************************************
+AUTHOR:SHIVAM TOMAR
+DREAM JOB :DATA ANALYST
+**********************************************/
