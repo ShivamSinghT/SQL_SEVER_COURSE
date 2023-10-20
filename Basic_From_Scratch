@@ -1,11 +1,220 @@
-.We use single line comment as per below syntax:
+>Single line comment as per below syntax:
 --Shivam Tomar
 
-.We use multiple line comment as per below syntax:
+>Multiple line comment as per below syntax:
 /************************************************
 Consistancy ,Hardwork & Patience are the friend of
 the life.
 *************************************************/
+
+
+/*****************************
+CREATE ,MODIFY & DROP DATABASE
+******************************/
+>Create Database Syntax:
+Method 1:
+Create Database HDFC_Bank;
+
+Method 2:
+IF Not Exists (Select * From Sys.Databases Where Name ='HDFC_Bank')
+---Then
+Create Database HDFC_Bank;
+
+Method 3:
+IF Exists (Select * from Sys.Databases Where Name = 'HDFC_Bank')
+--Then 
+Drop Database HDFC_Bank
+--and 
+Create Database HDFC_Bank
+
+>Modify Databse Syntax:
+Alter Database HDFC_Bank Modify Name = SBI_Bank
+
+
+>Drop Databse Syntax:
+Method 1:
+Drop Datbase HDFC_Bank
+
+Method 2:
+IF Exists (Select * from Sys.Databases Where Name ='HDFC_Bank')
+--Then
+Drop Database HDFC_Bank
+
+/**************************************************************
+Structured Query Language Manily Divided in to 4 Sub Languages.
+1.DDL
+2.DML
+3.TCL
+4.DCL
+***************************************************************/
+
+/*************************************************************
+DDL :This Languages Contains Five Commands 
+1.Create
+2.Alter
+3.Drop
+4.Truncate
+5.Sp_Rename
+**************************************************************/
+
+/***************************************
+  Create,Alter ,Drop & Truncate
+***************************************/
+
+1.
+Create Table Productmaster
+(
+PID                  Char(2)              Primary key,
+Product_Name         Varchar(25)          Not Null
+)
+
+
+2.Create Table Accountmaster
+(
+Acid                  int                   Primary Key Identity(100,1),
+Name                  Varchar(50)           Not Null,
+Addresss              Varchar(90)           Not Null ,  
+PID                    Char(2)              Not Null foreign Key References Productmaster(PID),
+DOB                   Date                  Not Null Check (Datediff(YY,DOB,Getdate())>=18 and Datediff(YY,DOB,Getdate())<=100),
+Phone_No              Char(10)              Not Null Check (Len(Phone_No)=10) Unique,
+Gender                Char(1)               Null Check (Gender ='M' or Gender ='F'),
+Cbalance              Money                 NUll,
+Ubalance              Money                 Null,
+Status                 Char(1)              Not Null Check in(Status ('I','O','C') Default 'O')
+)
+
+
+
+/***************************************
+              Alter 
+***************************************/
+
+---Change Data Type Size:
+Alter Table Accountmaster Alter Column Gender Char(5);
+
+--Add Column Name in the Table:
+Alter Table Accountmaster Add Address_2 Varchar(90);
+
+--Drop Column Name from the Table;
+Alter Table Accountmaster Drop Column Address_2
+
+--Change Table Name
+Sp_Rename 'Accountmaster','Accountmaster1'
+
+
+/***************************************
+           Drop & Truncate
+***************************************/
+--It Remove the Table permanantely from the Database.
+       Drop Table Accountmaster
+
+--It Delete all the records permanantely from the existing table.
+      Truncate Table Accountmaster
+
+
+
+/*************************************************************
+DML :This Languages Contains Four Commands 
+1.Select
+2.Insert
+3.Update
+4.Delete
+**************************************************************/
+
+
+/***************************************
+              Select
+***************************************/
+
+Select * from Accountmaster
+Go;
+
+
+/***************************************
+              Insert
+***************************************/
+
+--Explicit Method:
+Insert into Productmaster Values('SB', 'Saving Bank')
+
+--Implicit Method:
+Insert into Productmaster Values('LA', ' ')
+Insert into Productmaster(PID) Values ('FD')
+
+
+/***************************************
+              Update
+***************************************/
+
+
+Update Accountmaster
+Set Cbalance =500000
+Where Acid = 101
+Go;
+
+Update Accountmaster
+Set Cbalance =500000,Ubalance =63596,Name ='Shivam'
+Where Acid = 101
+Go;
+
+
+Update Accountmaster
+Set Status =
+Case
+    When Cbalance >=50000 Then 'O'
+    When Cbalance <50000 and >=2000 Then 'I'
+    Else 'C'
+End;
+
+
+/***************************************
+              Delete
+***************************************/
+Delete Form Accountmaster
+Go;
+
+Delete From Accountmaster
+Where Acid =101
+Go;
+
+
+/*************************************************************
+                    Important :
+--Find Schema Of the Table:
+     Sp_Help Accountmaster
+
+
+--Add Constraints:
+
+Alter Table Accountmaster
+Add Constraints PK_Accountmaster Primay Key (ID );
+
+---Drop Constraints
+Alter Table Accountmaster
+Drop Constraints UC_Accountmaster,
+                 FK_ProductmasterAccountmaster
+                 PK_Accountmaster,
+                 CHK_AccountmasterStatus,
+
+**************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
