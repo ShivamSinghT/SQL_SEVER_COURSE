@@ -3,6 +3,8 @@ CREATE NEW LOGIN
 ******************************/
 
 >CREATE LOGIN Shivam_Tomar WITH PASSWORD ='Shivam#@123'
+>Then click server and go in properties and change authentication from window to sql.
+> Now go in service and do right click on SQL Server(Provides Storage) to restart.
 
 >Single line comment as per below syntax:
 --Shivam Tomar
