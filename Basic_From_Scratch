@@ -1,3 +1,9 @@
+/*****************************
+CREATE NEW LOGIN
+******************************/
+
+>CREATE LOGIN Shivam_Tomar WITH PASSWORD ='Shivam#@123'
+
 >Single line comment as per below syntax:
 --Shivam Tomar
 
@@ -8,9 +14,8 @@ the life.
 *************************************************/
 
 
-/*****************************
-CREATE ,MODIFY & DROP DATABASE
-******************************/
+
+
 >Create Database Syntax:
 Method 1:
 Create Database HDFC_Bank;
